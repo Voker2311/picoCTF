@@ -1,0 +1,25 @@
+#!/usr/bin/env python
+
+ebp_plus_0x8 = 0x2e0
+
+if ebp_plus_0x8 > 0x3fb:
+    # <+10>:  jg     0x512 <asm1+37>
+    
+    if ebp_plus_0x8 != 0x559:     #<+37>:  cmp    DWORD PTR [ebp+0x8],0x559
+        eax = ebp_plus_0x8
+
+#<+12>:  cmp    DWORD PTR [ebp+0x8],0x280
+
+elif ebp_plus_0x8 != 0x280:
+     eax = ebp_plus_0x8
+     eax -= 0xa
+else:
+    eax = ebp_plus_0x8
+    eax += 0xa
+    
+    # <+35>:  jmp    0x529 <asm1+60>
+    # This is actually popping out the value of eax
+
+print(hex(eax))
+
+Output = 0x2d6
