@@ -1,0 +1,31 @@
+#!/usr/bin/env python
+
+#Define all the variables here
+ebp_plus_0x8 = 0x4
+
+ebp_plus_0xc = 0x2d
+
+eax = ebp_plus_0xc
+
+local_0 = eax  #local_0 = ebp-0x4
+
+eax = ebp_plus_0x8
+
+local_1 = eax  #local_1 = ebp-0x8
+
+#Actual logic goes in here
+
+#We actually jump tp <asm2+31>
+#cmp    DWORD PTR [ebp-0x8],0x5fa1
+while(local_1 <= 0x5fa1):
+    local_0 += 0x1      # add    DWORD PTR [ebp-0x4],0x1
+    local_1 += 0xd1     # add    DWORD PTR [ebp-0x8],0xd1
+
+eax = local_0  #  mov    eax,DWORD PTR [ebp-0x4]
+
+print(hex(eax))
+
+
+Output: 0xa3
+
+-Voker2311
